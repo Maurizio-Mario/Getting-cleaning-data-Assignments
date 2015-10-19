@@ -17,7 +17,7 @@ object.size(X_train)
 y_train <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/train", "y_train.txt"), header = TRUE)
 object.size(y_train)
 
-# 4) Dimensional exploration of data importen in 1, 2, and 3.
+# 4) Dimensional exploration of data importen in 1, 2 and 3.
 
 dim(subject_train)
 dim(X_train)
@@ -42,10 +42,11 @@ gc()
 
 # 6) Merge join_train_1 from 5) with X_train from 6).
 
-join_train_2 <- merge(join_train_1, X_train, all = TRUE)
-memory.limit()
-
-
-
-
+dim(X_train)
+join_train_2 <- cbind(join_train_1, X_train)
+memory.limit(size = 12058)
+dim(join_train_2)
+str(join_train_2)
+head(join_train_2)
+names(join_train_2)
 
