@@ -1,4 +1,5 @@
 rm(list = ls())
+getwd()
 setwd("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/R programming")
 dir()
 
@@ -43,6 +44,7 @@ gc()
 # 6) Merge join_train_1 from 5) with X_train from 6).
 
 dim(X_train)
+rm(list = "join_train_1", "X_train")
 join_train_2 <- cbind(join_train_1, X_train)
 memory.limit(size = 12058)
 dim(join_train_2)
@@ -50,3 +52,34 @@ str(join_train_2)
 head(join_train_2)
 names(join_train_2)
 
+# 7) Import subject_test. Each row identifies the subject who performed the activity for each window sample. Range 1:30
+
+subject_test <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/test", "subject_test.txt"), header = TRUE)
+object.size(subject_test)
+dim(join_train_2)
+
+# 8) Import X_test. Training set.
+
+X_test <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/test", "X_test.txt"), header = TRUE)
+object.size(X_test)
+
+# 9) Import y_test. Training labels. 
+y_test <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/test", "y_test.txt"), header = TRUE)
+
+# 10) Dimensional exploration 7, 8 and 9.
+sapply(c(subject_test, X_test, y_test), dim)
+dim(subject_test)
+dim(X_test)
+dim(y_test)
+
+# 11) Cbinding subject_test, X_test, y_test plus deletion
+join_test_2 <- cbind(subject_test, X_test, y_test)
+join_test_2
+dim(join_test_2)
+rm(list = "X_test", "y_test")
+
+## 12) Now i have two datasets of 2946*563(join_test_2) and of 7351*563 (join_train_2). Operate rbind to merge them.
+
+test_train <- rbind(join_train_2, join_train_2)
+dim(test_train)
+str(head(test_train, 1))
