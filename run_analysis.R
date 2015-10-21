@@ -1,4 +1,3 @@
-rm(list = ls())
 getwd()
 setwd("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/R programming")
 dir()
@@ -6,19 +5,16 @@ dir()
 # 1) Import subject_train. Each row identifies the subject who performed the activity for each window sample. Range 1:30
 
 subject_train <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/train", "subject_train.txt"), header = TRUE)
-object.size(subject_train)
 
 # 2) Import X_train. Training set.
 
 X_train <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/train", "X_train.txt"), header = TRUE)
-object.size(X_train)
-?object.size
+
 # 3) Import y_train. Training labels. 
 
 y_train <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/train", "y_train.txt"), header = TRUE)
-object.size(y_train)
 
-# 4) Dimensional exploration of data importen in 1, 2 and 3.
+# 4) Dimensional exploration of data imported in 1, 2 and 3.
 
 dim(subject_train)
 dim(X_train)
@@ -78,8 +74,26 @@ join_test_2
 dim(join_test_2)
 rm(list = "X_test", "y_test")
 
-## 12) Now i have two datasets of 2946*563(join_test_2) and of 7351*563 (join_train_2). Operate rbind to merge them.
+# 12) Now i have two datasets of 2946*563(join_test_2) and of 7351*563 (join_train_2). Operate rbind to merge them.
 
 test_train <- rbind(join_train_2, join_train_2)
 dim(test_train)
 str(head(test_train, 1))
+
+# 13) Labelling activities values
+
+summary(test_train$X5)
+
+test_train$X5 <- factor(test_train$X5, levels = c(1:6), labels = c( "walking", "walking_upstair", "Walking_downstairs", "sitting", "standing", "laying"))
+
+# 14) Labelling every column of test_train
+
+var_names <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset", "features.txt"), header = FALSE)
+        
+var_names <- subset(var_names, select = -V1)
+new_rows <- data.frame(V2 = c("subject", "activity"))
+var_names <- rbind(new_rows, var_names)
+as.data.frame(var_names)
+test_train2 <- test_train
+colnames(test_train2) <- var_names$V2 
+
