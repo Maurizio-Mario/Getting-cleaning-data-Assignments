@@ -96,4 +96,24 @@ var_names <- rbind(new_rows, var_names)
 as.data.frame(var_names)
 test_train2 <- test_train
 colnames(test_train2) <- var_names$V2 
+names(test_train2)
 
+# 15) Clean workspace
+
+rm(list=setdiff(ls(), "test_train2"))
+
+# 16) Extract mean and standard deviation (Step 2 of the course project)
+
+test_train3 <- test_train2[grep("subject|activity|mean|std", colnames(test_train2), value = TRUE)]
+dim(test_train3)
+
+# 17)
+
+sum(is.na(test_train3))
+print(test_train3)
+class(test_train3)
+mean(test_train3[3:length(test_train3)])
+tapply(test_train3,test_train3$subject, mean)
+mean(test_train3$`tBodyAcc-mean()-X`)
+aggregate(test_train3[, 3:81], list(test_train3$activity), mean)
+q()
