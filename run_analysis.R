@@ -1,6 +1,4 @@
-getwd()
-
-# 1) Import subject_train. Each row identifies the subject who performed the activity for each window sample. Range 1:30 but excluded few cases, contained in subject_text.txt. Import it in the "test" merging session. in cul ti e ci t'ha cag√†. 
+# 1) Import subject_train. Each row identifies the subject who performed the activity for each window sample. Range 1:30 but excluded few cases, contained in subject_text.txt. Import it in the "test" merging session. in cul ti e ci t'ha cag‡. 
 
 subject_train <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/train", "subject_train.txt"), header = TRUE)
 
@@ -35,7 +33,7 @@ object.size(join_train_1)
 rm(list = "subject_train", "y_train")
 gc()
 
-# 6) Merge join_train_1 from 5) with X_train from 6).
+# 6) Merge join_train_1 from 5) with X_train from 2).
 
 dim(X_train)
 
@@ -95,22 +93,20 @@ test_train1 <- rbind(join_train_2, join_test_2)
 test_train1 <- test_train1[order(test_train1$subject, test_train1$activity),]
 dim(test_train)
 
-# 15) Clean workspace exept for the merged dataset of 14).
+# 17) Clean workspace exept for the merged dataset of 14).
 
 rm(list=setdiff(ls(), "test_train1"))
 
-# 16) Step 2 of the Assignment project. Extracts only the measurements on the mean and standard deviation for each measurement. 
+# 18) Step 2 of the Assignment project. Extracts only the measurements on the mean and standard deviation for each measurement. 
 
 test_train1 <- test_train1[grep("subject|activity|mean|std", colnames(test_train1), value = TRUE)]
 dim(test_train1)
 
-# 17) From the data set in step 4 (in this script is the dataset 
+# 19) From the data set in step 4 (in this script is the dataset 
 # in step 16) ), creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 prog_ass <- aggregate(test_train1[, 3:81], list(test_train1$activity, test_train1$subject), mean)
 
 rm(test_train1)
 
-# 18) finished! 
-
-q()
+# 20) finished! 
