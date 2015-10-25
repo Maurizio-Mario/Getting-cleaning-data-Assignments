@@ -1,4 +1,4 @@
-# 1) Import subject_train. Each row identifies the subject who performed the activity for each window sample. Range 1:30 but excluded few cases, contained in subject_text.txt. Import it in the "test" merging session. in cul ti e ci t'ha cagà. 
+# 1) Import subject_train. Each row identifies the subject who performed the activity for each window sample. Range 1:30 but excluded few cases, contained in subject_text.txt. Import it in the "test" merging session. in cul ti e ci t'ha cag?. 
 
 subject_train <- read.table(file = file.path("C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/UCI HAR Dataset/train", "subject_train.txt"), header = TRUE)
 
@@ -110,3 +110,5 @@ prog_ass <- aggregate(test_train1[, 3:81], list(test_train1$activity, test_train
 rm(test_train1)
 
 # 20) finished! 
+write.table(prog_ass, file = "C:/Users/MaurizioLocale/OneDrive/Data_Science/3 Getting and Cleaning Data/Getting-cleaning-data-Assignments/prog_ass.txt", row.names = FALSE)
+

@@ -12,10 +12,10 @@ of its reference to "mean" or "standard deviation". I included also "mean
 frequencies" etcetera. Why? Two reasons. First, there is not explicit order of ignore them, hence I prefer exagerate in prudence. Cutting is easier than adding.
 Second, it was easier than operate a more precise grep-cut.
 
-Detailed description of the variables is not provided, since they are the same
-of the original database. I did not change the format of the labes, since such 
-a dataset aims to professionals able to get the labels. Otherwise, with a different
-target of non professionals, the names should be more auto explicative.
+Detailed description of the variables and of their unit of measurement is not provided, since they are the same of the original database. You can find the file in this very same repo, in the UCI HAR Dataset folder. 
+
+I did not change the format of the labes, since, as discussed in the forum, such a dataset aims to professionals able to get the labels. Otherwise, with a different
+target of non professionals, the names should be more auto explicative. Please consult the discussion: https://class.coursera.org/getdata-033/forum/thread?thread_id=118
 
 Enjoy and thank you!
 
